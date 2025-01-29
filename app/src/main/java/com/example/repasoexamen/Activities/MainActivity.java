@@ -14,14 +14,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.room.Room;
 
+import com.example.repasoexamen.Dao.ResultadoDao;
+import com.example.repasoexamen.Database.AppDatabase;
+import com.example.repasoexamen.Entities.ResultadoEntity;
 import com.example.repasoexamen.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView n1, n2, Resultado;
     private CheckBox cbSumar, cbRestar;
     private ImageView imagen;
+    private AppDatabase database;
+    private ResultadoDao resultadoDao;
+    private ArrayList<ResultadoEntity> listaResultados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
         cbSumar = findViewById(R.id.cbSumar);
         cbRestar = findViewById(R.id.cbRestar);
         imagen = findViewById(R.id.imagen);
+
+        //Inicializar BBDD
+        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "resultados-db")
+                .allowMainThreadQueries()
+                .build();
+        resultadoDao = database.resultadoDao();
+
+        listaResultados = new ArrayList<>(resultadoDao.obtenerTodosLosResultados());
+
     }
 
     public void operacion(View view){
@@ -75,4 +93,25 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Resultado", resultadoEnviar);
         startActivity(intent);
     }
+
+    public void pasarDatabase(View view){
+        ResultadoEntity nuevoResultado = new ResultadoEntity();
+        int resultado = Integer.parseInt(Resultado.getText().toString());
+        nuevoResultado.setResultado(resultado);
+        resultadoDao.insertarResultado(nuevoResultado);
+        listaResultados.add(nuevoResultado);
+        Toast.makeText(this,"Resultado guardado",Toast.LENGTH_SHORT).show();
+    }
+
+    public void irDatabaBase(View view) {
+        if (listaResultados.isEmpty()) {
+            Toast.makeText(this, "No hay resultados en la base de datos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(MainActivity.this, DatabaseActivity.class);
+        intent.putExtra("listaResultados", listaResultados); // Pasar la lista como Serializable
+        startActivity(intent);
+    }
+
 }

@@ -14,14 +14,12 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="54dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/n1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imagen" />
 
     <Button
         android:id="@+id/bImagen"
@@ -29,25 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="290dp"
         android:onClick="imagen"
         android:text="Imagen"
-        app:layout_constraintBottom_toTopOf="@+id/Resultado"
-        app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="11dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="@+id/b2"
-        app:layout_constraintStart_toEndOf="@+id/bImagen"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -55,58 +37,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="3dp"
         android:onClick="irActivity2"
         android:text="Activity2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/space"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/n2"
-        android:layout_width="222dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="0dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="Numero2"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/Resultado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/n1" />
+        app:layout_constraintEnd_toEndOf="@+id/n1"
+        app:layout_constraintStart_toStartOf="@+id/n1" />
 
     <EditText
         android:id="@+id/Resultado"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="325dp"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="287dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Resultado"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bImagen" />
+        app:layout_constraintEnd_toEndOf="@+id/n2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bCalcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="133dp"
-        android:layout_marginBottom="77dp"
+        android:layout_marginTop="15dp"
         android:onClick="operacion"
         android:text="Calcular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bDataBase"
+        app:layout_constraintStart_toStartOf="@+id/bDataBase"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="102dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/bCalcular"
-        app:layout_constraintStart_toStartOf="@+id/bCalcular"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="42dp"
+        app:layout_constraintEnd_toEndOf="@+id/bCalcular"
         app:layout_constraintTop_toBottomOf="@+id/Resultado">
 
         <CheckBox
@@ -125,25 +104,48 @@
     <EditText
         android:id="@+id/n1"
         android:layout_width="229dp"
-        android:layout_height="0dp"
+        android:layout_height="74dp"
         android:layout_marginStart="44dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginBottom="91dp"
         android:ems="10"
         android:hint="Numero 1"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/n2"
+        app:layout_constraintBottom_toBottomOf="@+id/n2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/bImagen" />
 
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="150dp"
         android:layout_height="147dp"
-        android:layout_marginTop="472dp"
-        android:layout_marginEnd="16dp"
         android:src="@drawable/imagen"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bDataBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="47dp"
+        android:onClick="pasarDatabase"
+        android:text="Pasar a Database"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bDatabase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="irDatabaBase"
+        android:text="irDatabase"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
